@@ -1,0 +1,13 @@
+.wallet-adapter-button {
+    background-color: black !important; /* Example: Orange background */
+    color: #ffffff !important;          /* Example: White text */
+    border-radius: 8px !important;      /* Example: Rounded corners */
+    padding: 12px 24px !important;      /* Example: Padding */
+    font-size: 16px !important;         /* Example: Font size */
+    border: none !important;            /* Example: Remove border */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1) !important; /* Shadow */
+}
+  
+.wallet-adapter-button:hover {
+    background-color: rgb(53, 57, 53) !important; /* Example: Darker orange on hover */
+}
