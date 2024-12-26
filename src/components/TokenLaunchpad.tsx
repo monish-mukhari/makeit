@@ -5,7 +5,7 @@ import { uploadImage } from "../utils/UploadImage";
 import { generateMetadata } from "../utils/GenerateMetadata";
 import { uploadMetadata } from "../utils/UploadMetadata";
 import { Keypair, SystemProgram, Transaction } from "@solana/web3.js";
-import { createAssociatedTokenAccountInstruction, createInitializeMetadataPointerInstruction, createInitializeMintInstruction, createMintToInstruction, ExtensionType, getAssociatedTokenAddress, getAssociatedTokenAddressSync, getMintLen, LENGTH_SIZE, TOKEN_2022_PROGRAM_ID, TYPE_SIZE } from "@solana/spl-token";
+import { createAssociatedTokenAccountInstruction, createInitializeMetadataPointerInstruction, createInitializeMintInstruction, createMintToInstruction, ExtensionType, getAssociatedTokenAddressSync, getMintLen, LENGTH_SIZE, TOKEN_2022_PROGRAM_ID, TYPE_SIZE } from "@solana/spl-token";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { createInitializeInstruction, pack } from "@solana/spl-token-metadata";
 import { generateSubMetadata } from "../utils/GenerateSubMetadata";
