@@ -88,7 +88,7 @@ export function TokenLaunchpad() {
             await wallet.sendTransaction(transaction2, connection);
 
             const transaction3 = new Transaction().add(
-                createMintToInstruction(mintAddress.publicKey, associatedToken, wallet.publicKey, parseInt(initialSupply), [], TOKEN_2022_PROGRAM_ID)
+                createMintToInstruction(mintAddress.publicKey, associatedToken, wallet.publicKey, parseInt(initialSupply) * 1000000000, [], TOKEN_2022_PROGRAM_ID)
             );
     
             await wallet.sendTransaction(transaction3, connection);
