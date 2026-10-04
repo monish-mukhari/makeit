@@ -1,72 +1,44 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from "react";
 
-interface FileUploadProps {
-  onFileSelect: (file: File | null) => void;
-}
+interface FileUploadProps { onFileSelect: (file: File | null) => void; }
 
 const FileUpload: React.FC<FileUploadProps> = ({ onFileSelect }) => {
   const [preview, setPreview] = useState<string | null>(null);
   const [fileName, setFileName] = useState<string | null>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
+  useEffect(() => () => { if (preview) URL.revokeObjectURL(preview); }, [preview]);
+
+  const selectFile = (file: File | null) => {
+    if (preview) URL.revokeObjectURL(preview);
+    if (file?.type.startsWith("image/")) {
       setPreview(URL.createObjectURL(file));
       setFileName(file.name);
       onFileSelect(file);
-    } else {
-      setPreview(null);
-      setFileName(null);
-      onFileSelect(null);
+      return;
     }
+    setPreview(null);
+    setFileName(null);
+    onFileSelect(null);
   };
 
   return (
-    <div className="flex flex-col items-start space-y-2">
-      <label className="text-black font-medium">* Image:</label>
-      <div className='flex'>
-        <div className="w-44 h-44 flex items-center justify-center border border-gray-600 rounded-md overflow-hidden">
-            {preview ? (
-            <img src={preview} alt="Preview" className="object-cover h-24 w-24"  />
-            ) : (
-            <span className="text-gray-400">No image uploaded</span>
-            )}
-        </div>
-
-        <div className='flex flex-col justify-center ml-4'>
-            <input
-                type="file"
-                accept="image/*"
-                onChange={handleFileChange}
-                className="hidden"
-                id="file-upload"
-            />
-            <label
-                htmlFor="file-upload"
-                className="cursor-pointer bg-black text-white px-4 py-2 rounded-md"
-            >
-                Choose file
-            </label>
-            
-            
-        </div>
-
-        
-        <div className='flex flex-col justify-center ml-3'>  
-            <div> 
-                </div> 
-                {fileName && (
-                    <span className="text-gray-300 text-sm overflow-hidden overflow-ellipsis whitespace-nowrap w-48">
-                        {fileName}
-                    </span>
-                )}
-            </div>
-        
-        
-        </div>
-      <p className="text-gray-400 text-sm">
-        Most meme coins use a square 1000x1000 logo
-      </p>
+    <div className={`upload-zone ${isDragging ? "is-dragging" : ""}`}
+      onDragOver={(event) => { event.preventDefault(); setIsDragging(true); }}
+      onDragLeave={() => setIsDragging(false)}
+      onDrop={(event) => { event.preventDefault(); setIsDragging(false); selectFile(event.dataTransfer.files[0] ?? null); }}>
+      <input ref={inputRef} type="file" accept="image/png,image/jpeg,image/webp,image/gif"
+        onChange={(event) => selectFile(event.target.files?.[0] ?? null)} hidden />
+      <button className="upload-button" type="button" onClick={() => inputRef.current?.click()}>
+        {preview ? <img src={preview} alt="Token artwork preview" /> :
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M5 14v4a2 2 0 002 2h10a2 2 0 002-2v-4" /></svg>}
+      </button>
+      <div className="upload-copy">
+        <strong>{fileName ?? "Drop your token artwork"}</strong>
+        <span>{fileName ? "Click the preview to replace it" : "or click to browse · PNG, JPG, WEBP or GIF"}</span>
+      </div>
+      <button className="text-button" type="button" onClick={() => inputRef.current?.click()}>{preview ? "Replace" : "Browse"}</button>
     </div>
   );
 };

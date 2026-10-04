@@ -9,7 +9,7 @@ import { TokenLaunchpad } from './components/TokenLaunchpad';
 function App() {
 
   return (
-    <div>
+    <div className="app-shell">
       <ConnectionProvider endpoint={"https://api.devnet.solana.com"}>
         <WalletProvider wallets={[]} autoConnect>
           <WalletModalProvider>

@@ -1,13 +1,9 @@
-.wallet-adapter-button {
-    background-color: black !important; /* Example: Orange background */
-    color: #ffffff !important;          /* Example: White text */
-    border-radius: 8px !important;      /* Example: Rounded corners */
-    padding: 12px 24px !important;      /* Example: Padding */
-    font-size: 16px !important;         /* Example: Font size */
-    border: none !important;            /* Example: Remove border */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1) !important; /* Shadow */
+.wallet-adapter-button-trigger {
+  height: 42px !important; padding: 0 18px !important; border-radius: 0 !important;
+  background: #151515 !important; color: #f1efe5 !important; font: 500 10px/1 "DM Mono", monospace !important;
+  text-transform: uppercase !important; letter-spacing: .04em !important;
+  transition: transform .2s ease, box-shadow .2s ease !important;
 }
-  
-.wallet-adapter-button:hover {
-    background-color: rgb(53, 57, 53) !important; /* Example: Darker orange on hover */
-}
+.wallet-adapter-button-trigger:hover { background: #ff5424 !important; color: #151515 !important; transform: translate(-2px,-2px); box-shadow: 2px 2px 0 #151515; }
+.wallet-adapter-button-trigger:not([disabled]):hover { background: #ff5424 !important; }
+.wallet-adapter-modal-wrapper { background: #171a18 !important; }

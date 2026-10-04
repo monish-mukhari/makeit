@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@1,6..72,500&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root { font-family: "Manrope", sans-serif; color: #eef2eb; background: #0b0d0c; font-synthesis: none; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; min-width: 320px; min-height: 100vh; background: #0b0d0c; }
+button, input, textarea { font: inherit; }
+button { cursor: pointer; }
+::selection { background: #c7ff47; color: #0b0d0c; }
